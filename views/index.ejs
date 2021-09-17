@@ -25,8 +25,8 @@
       </thead>
       <tbody>
             <tr>
-              <td><a href="<%= shortUrl.full %>"><%= shortUrl.full %></a></td>
-              <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
+              <td ><a href="<%= shortUrl.full %>" ><%= shortUrl.full %></a></td>
+              <td><a href="<%= shortUrl.short %>" id="fullUrlValue"><%= shortUrl.short %></a><br><button onclick="copyUrl()" id="copy-btn">Copy link</button></td>
             </tr>
             
           </tbody>
@@ -34,4 +34,19 @@
         <% }  %>  
   </div>
 </body>
+<script>
+const copyUrl= ()=> {
+  var url = document.getElementById("fullUrlValue").innerHTML;
+  var button =document.querySelector('#copy-btn')
+  var host = window.location.host;
+  var base_url = window.location.origin;
+  navigator.clipboard.writeText(`${host}/${url}`);
+  button.innerHTML="Copied"
+  setTimeout(() => {
+    button.innerHTML="Copy Link"
+    
+  }, 2000);
+  // alert("Copied the text: " +`${host}/${url}`);
+}
+</script>
 </html>
